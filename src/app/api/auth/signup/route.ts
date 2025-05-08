@@ -1,17 +1,17 @@
 import type { NextRequest } from 'next/server'
 import { cookies } from 'next/headers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { SignUpForm, type SignUpFormType } from '@/lib/schemas/SignUpForm'
-import { Response } from '../utils/Respoonse'
+import { Response } from '../../utils/Respoonse'
+import { SignupForm, type SignupFormType } from '@/lib/schemas/SignUpForm'
 
 // Handles user sign-up requests
 export const POST = async (req: NextRequest) => {
   const supabase = createServerComponentClient({ cookies })
-  let signUpData: SignUpFormType
+  let signUpData: SignupFormType
 
   try {
     const reqData = await req.json()
-    signUpData = await SignUpForm.parseAsync(reqData)
+    signUpData = await SignupForm.parseAsync(reqData)
   } catch {
     return Response(false, 400, { msg: 'Invalid data' })
   }
