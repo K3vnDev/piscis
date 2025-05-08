@@ -1,49 +1,42 @@
 'use client'
 
+import { Field } from './form/field'
+import { Submit } from './form/submit'
+import { EmailIcon, LockIcon } from './icons'
+import { LogoIcon } from './images/logoIcon'
+import { LogoText } from './images/logoText'
+
 export const LoginForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.target as HTMLFormElement)
 
-    const email = String(formData.get('email') ?? '')
-    const password = String(formData.get('pass') ?? '')
+    const data = {
+      email: String(formData.get('email') ?? ''),
+      password: String(formData.get('pass') ?? '')
+    }
+
+    e.currentTarget.reset()
   }
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col gap-3 w-96 bg-white px-8 py-12 rounded-lg'>
-      <FormField name='email' placeholder='Correo electrónico' type='email' />
-      <FormField name='pass' placeholder='Contraseña' type='password' />
-      <FormSubmitButton>Acceder</FormSubmitButton>
+    <form onSubmit={handleSubmit} className='flex flex-col gap-3.5 bg-white px-8 pt-10 pb-7 rounded-lg'>
+      <Logo />
+      <Field name='email' placeholder='Correo electrónico' type='email' icon={<EmailIcon />} />
+      <Field name='pass' placeholder='Contraseña' type='password' icon={<LockIcon />} />
+      <Submit>Acceder</Submit>
     </form>
   )
 }
 
-interface FormFieldProps {
-  name: string
-  placeholder: string
-  type: React.HTMLInputTypeAttribute
-  icon?: React.ReactNode
-  className?: string
-}
+const Logo = () => {
+  const logoIconSize = 130
+  const logoTextWH = { w: 300, h: 50 }
 
-const FormField = ({ name, placeholder, type, icon, className }: FormFieldProps) => {
   return (
-    <label className={`flex items-center gap-2 border border-gray-300 rounded-md px-4 py-2 ${className}`}>
-      <span>{icon}</span>
-      <input {...{ name, type, placeholder }} className='w-full outline-none placeholder:text-sm' />
-    </label>
-  )
-}
-
-interface FormSubmitButtonProps {
-  children: React.ReactNode
-  className?: string
-}
-
-const FormSubmitButton = ({ children, className }: FormSubmitButtonProps) => {
-  return (
-    <button className={`bg-[#1A6AFF] rounded-md text-white font-semibold py-2 ${className}`}>
-      {children}
-    </button>
+    <div className='flex items-center justify-center gap-2 mb-4'>
+      <LogoIcon w={logoIconSize} h={logoIconSize} />
+      <LogoText {...logoTextWH} />
+    </div>
   )
 }

@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.button {
+  @apply transition duration-200 ease-in-out hover:brightness-125 cursor-pointer active:scale-95 active:brightness-90;
+}
