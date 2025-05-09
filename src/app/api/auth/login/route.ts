@@ -11,8 +11,8 @@ export const POST = async (req: Request) => {
   try {
     const data = await req.json()
     loginData = await LoginForm.parseAsync(data)
-  } catch (error) {
-    return Response(false, 400, { msg: 'Invalid data' })
+  } catch {
+    return Response(false, 400, { msg: 'Mala petición' })
   }
 
   try {
@@ -22,9 +22,18 @@ export const POST = async (req: Request) => {
     })
 
     if (error) {
-      return Response(false, 401, { msg: 'Invalid credentials' })
+      return Response(false, 401, { msg: 'Correo o contraseña inválidos' })
     }
-    return Response(true, 200, { msg: 'Login successful', data })
+
+    const {
+      user: { id, email },
+      session: { access_token, refresh_token }
+    } = data
+
+    return Response(true, 200, {
+      msg: 'Login successful',
+      data: { access_token, refresh_token, id, email }
+    })
   } catch {
     return Response(false, 500)
   }
