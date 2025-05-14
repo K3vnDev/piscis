@@ -4,22 +4,16 @@ import { type NextRequest, NextResponse } from 'next/server'
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
+  const { pathname } = new URL(req.url)
 
-  const reqUrl = new URL(req.url)
-  const { pathname } = reqUrl
-
-  if (isOnProtectedRoute(pathname)) {
+  if (PROTECTED_ROUTES.has(pathname)) {
     const supabase = createMiddlewareClient({ req, res })
 
-    const {
-      data: { session }
-    } = await supabase.auth.getSession()
+    const { data } = await supabase.auth.getSession()
 
-    if (!session) return NextResponse.redirect(new URL('/', req.url))
+    if (!data.session) {
+      return NextResponse.redirect(new URL('/', req.url))
+    }
   }
   return NextResponse.next()
-}
-
-const isOnProtectedRoute = (pathname: string) => {
-  return PROTECTED_ROUTES.has(pathname)
 }
