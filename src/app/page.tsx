@@ -1,5 +1,5 @@
-import { LoginBackground } from '@/components/loginBackground'
-import { LoginForm } from '@/components/loginForm/loginForm'
+import { LoginBackground } from '@/components/login/loginBackground'
+import { LoginForm } from '@/components/login/loginForm'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
