@@ -21,6 +21,8 @@ export const POST = async (req: Request) => {
       password: loginData.pass
     })
 
+    console.log({ ErrorTrace: { error } })
+
     if (error) {
       return Response(false, 401, { msg: 'Correo o contraseña inválidos' })
     }
