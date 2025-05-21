@@ -122,3 +122,32 @@ export const ChatBubbleIcon = (props: Props) => (
     <path d='M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1' />
   </svg>
 )
+
+export const HomeIcon = (props: Props) => (
+  <svg width='24' height='24' viewBox='0 0 24 24' fill='currentColor' {...props}>
+    <path stroke='none' d='M0 0h24v24H0z' fill='none' />
+    <path d='M12.707 2.293l9 9c.63 .63 .184 1.707 -.707 1.707h-1v6a3 3 0 0 1 -3 3h-1v-7a3 3 0 0 0 -2.824 -2.995l-.176 -.005h-2a3 3 0 0 0 -3 3v7h-1a3 3 0 0 1 -3 -3v-6h-1c-.89 0 -1.337 -1.077 -.707 -1.707l9 -9a1 1 0 0 1 1.414 0m.293 11.707a1 1 0 0 1 1 1v7h-4v-7a1 1 0 0 1 .883 -.993l.117 -.007z' />
+  </svg>
+)
+
+export const PCIcon = (props: Props) => (
+  <svg
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    {...props}
+  >
+    <path stroke='none' d='M0 0h24v24H0z' fill='none' />
+    <path d='M3 5h6v14h-6z' />
+    <path d='M12 9h10v7h-10z' />
+    <path d='M14 19h6' />
+    <path d='M17 16v3' />
+    <path d='M6 13v.01' />
+    <path d='M6 16v.01' />
+  </svg>
+)

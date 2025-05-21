@@ -1,9 +1,39 @@
+'use client'
+
+import { useState } from 'react'
 import { LogoIcon } from '../images/logoIcon'
 import { SignOutButton } from './signOutButton'
+import { HomeIcon, PCIcon } from '../icons'
+import { RouteButton } from './routeButtons'
 
-export const AppSidebar = () => (
-  <aside className='bg-zinc-900 fixed h-screen w-24 flex flex-col py-8 items-center space justify-between'>
-    <LogoIcon className='brightness-0 invert w-16' />
-    <SignOutButton />
-  </aside>
-)
+export const AppSidebar = () => {
+  const [isExpanded, setIsExpanded] = useState(false)
+
+  return (
+    <aside className='bg-zinc-900 fixed h-screen w-24 flex flex-col py-8 items-center space justify-between'>
+      <div className='flex flex-col items-center gap-14'>
+        <LogoIcon className='brightness-0 invert w-16' />
+        <div className='size-14 rounded-full bg-white' />
+        <ul className='flex flex-col gap-8'>
+          {routes.map(route => (
+            <RouteButton {...{ ...route, isExpanded }} key={route.path} />
+          ))}
+        </ul>
+      </div>
+      <SignOutButton />
+    </aside>
+  )
+}
+
+const routes = [
+  {
+    label: 'Inicio',
+    icon: <HomeIcon />,
+    path: '/inicio'
+  },
+  {
+    label: 'Semilleros',
+    icon: <PCIcon />,
+    path: '/semilleros'
+  }
+]

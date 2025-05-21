@@ -11,7 +11,7 @@ export default async function Home() {
   const { data: { user } } = await supabase.auth.getUser()
 
   if (user?.user_metadata.email_verified) {
-    redirect('/home')
+    redirect('/inicio')
   }
 
   return (

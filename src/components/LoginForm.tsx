@@ -48,7 +48,7 @@ export const LoginForm = () => {
           setError('Hubo un error al iniciar sesión, inténtelo nuevamente.')
           return
         }
-        router.replace('/home')
+        router.replace('/inicio')
       },
       onError: m => {
         setError(m ?? null)
