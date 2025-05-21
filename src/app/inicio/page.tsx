@@ -5,11 +5,14 @@ import { InfoCard } from '@/components/infoCard'
 import { AppSidebar } from '@/components/appSidebar/appSidebar'
 import { WelcomeCard } from '@/components/welcomeCard'
 import { AppHeader } from '@/components/appHeader'
+import { useUserData } from '@/hooks/useUserData'
 
 export default function Home() {
+  const userData = useUserData()
+
   return (
     <body className='flex'>
-      <AppSidebar />
+      <AppSidebar {...{ userData }} />
 
       <main className='ml-24 w-full min-h-screen bg-[#efefef] flex flex-col'>
         <AppHeader />

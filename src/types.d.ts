@@ -3,3 +3,9 @@ export interface Logo {
   w?: number
   h?: number
 }
+
+export interface User {
+  name: string
+  id: string
+  role: 'teacher' | 'student'
+}
