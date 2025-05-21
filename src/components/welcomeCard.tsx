@@ -4,8 +4,8 @@ import Image from 'next/image'
 export const WelcomeCard = () => (
   <div
     className={`
-      w-full bg-gradient-to-r from-[#0464B2] to-[#66AEE9] px-28
-      flex justify-between text-white tracking-wide
+      w-full bg-gradient-to-r from-aqua-10 to-aqua-20 px-28
+      flex justify-between text-white tracking-wide shadow-card
     `}
   >
     <span className='flex flex-col gap-1 py-12'>

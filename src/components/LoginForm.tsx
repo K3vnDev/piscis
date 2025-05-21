@@ -50,11 +50,11 @@ export const LoginForm = () => {
         }
         router.replace('/home')
       },
-      onError: m => setError(m ?? null),
-      onFinish: () => setIsLoading(false)
+      onError: m => {
+        setError(m ?? null)
+        setIsLoading(false)
+      }
     })
-
-    e.currentTarget.reset()
   }
 
   const closeErrorCard = () => {

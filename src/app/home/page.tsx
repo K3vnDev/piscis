@@ -2,8 +2,9 @@
 
 import { EmailIcon, GroupIcon, ToggleRightIcon } from '@/components/icons'
 import { InfoCard } from '@/components/infoCard'
-import { Sidebar } from '@/components/sidebar/sidebar'
+import { AppSidebar } from '@/components/appSidebar/appSidebar'
 import { WelcomeCard } from '@/components/welcomeCard'
+import { AppHeader } from '@/components/appHeader'
 
 export default function Home() {
   const cards = [
@@ -26,10 +27,10 @@ export default function Home() {
 
   return (
     <body className='flex'>
-      <Sidebar />
+      <AppSidebar />
 
       <main className='ml-24 w-full min-h-screen bg-[#efefef] flex flex-col'>
-        <header className='w-full h-20 bg-white mt-20' />
+        <AppHeader />
         <WelcomeCard />
 
         <div className='w-full px-32 mt-9'>

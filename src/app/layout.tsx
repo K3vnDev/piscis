@@ -5,5 +5,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <html lang='en'>{children}</html>
+  return (
+    <html lang='en'>
+      <head>
+        <title>Piscis</title>
+      </head>
+      {children}
+    </html>
+  )
 }
