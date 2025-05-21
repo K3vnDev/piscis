@@ -11,6 +11,12 @@
   --color-aqua-10: #0398a5;
   --color-aqua-20: #027a84;
 
+  --color-blue-10: #d1ebf6;
+  --color-blue-20: #b1d1ed;
+  --color-blue-30: #548ac8;
+  --color-blue-40: #0477bd;
+  --color-blue-50: #034e96;
+
   /* Shadows */
   --shadow-card: 2px 4px 6px rgba(0, 0, 0, 0.25);
 }

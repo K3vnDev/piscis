@@ -1,16 +1,15 @@
 'use client'
 
 import { dataFetch } from '@/lib/utils/dataFetch'
-import { Field } from './form/field'
-import { Submit } from './form/submit'
-import { EmailIcon, LockIcon } from './icons'
-import { LogoIcon } from './images/logoIcon'
-import { LogoText } from './images/logoText'
+import { Field } from './field'
+import { Submit } from './submit'
+import { EmailIcon, LockIcon } from '../icons'
 import { CONTENT_JSON } from '@/consts'
 import { useRouter } from 'next/navigation'
-import { ErrorCard } from './errorCard'
+import { ErrorCard } from '../errorCard'
 import { useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { Logo } from './logo'
 
 export const LoginForm = () => {
   const router = useRouter()
@@ -69,17 +68,5 @@ export const LoginForm = () => {
       {error && <ErrorCard closeCard={closeErrorCard}>{error}</ErrorCard>}
       <Submit isLoading={isLoading}>Acceder</Submit>
     </form>
-  )
-}
-
-const Logo = () => {
-  const logoIconSize = 130
-  const logoTextWH = { w: 300, h: 50 }
-
-  return (
-    <div className='flex items-center justify-center gap-2 mb-4'>
-      <LogoIcon w={logoIconSize} h={logoIconSize} />
-      <LogoText {...logoTextWH} />
-    </div>
   )
 }
