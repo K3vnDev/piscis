@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 interface Props {
   icon: React.ReactNode
@@ -8,8 +9,11 @@ interface Props {
 }
 
 export const RouteButton = ({ icon, label, path, isExpanded }: Props) => {
+  const pathname = usePathname()
+  const color = pathname === path ? 'text-white' : 'text-zinc-500'
+
   return (
-    <li title={label} className='text-white button'>
+    <li title={label} className={`${color} button`}>
       <Link href={path}>
         <span className='*:size-9'>{icon}</span>
       </Link>

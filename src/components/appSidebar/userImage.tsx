@@ -12,8 +12,9 @@ export const UserImage = ({ userData }: Props) => (
         src={`https://ui-avatars.com/api/?name=${userData.name}&length=1&background=034E96&color=FFF&bold=true`}
         width={256}
         height={256}
-        alt={`The profile picture of ${userData?.name}`}
-        className='size-full'
+        title={userData.name}
+        alt={`La imagen de perfil de ${userData?.name}`}
+        className='size-full max-w-full aspect-square'
         draggable={false}
       />
     )}

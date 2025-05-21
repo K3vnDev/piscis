@@ -7,14 +7,14 @@ import { WelcomeCard } from '@/components/welcomeCard'
 import { AppHeader } from '@/components/appHeader'
 import { useUserData } from '@/hooks/useUserData'
 
-export default function Home() {
+export default function InicioPage() {
   const userData = useUserData()
 
   return (
-    <body className='flex'>
+    <body className='flex bg-[#efefef]'>
       <AppSidebar {...{ userData }} />
 
-      <main className='ml-24 w-full min-h-screen bg-[#efefef] flex flex-col'>
+      <main className='ml-24 w-full min-h-screen flex flex-col'>
         <AppHeader />
         <WelcomeCard />
 
