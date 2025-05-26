@@ -6,7 +6,7 @@ export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
   const { pathname, searchParams } = new URL(req.url)
 
-  if (PROTECTED_ROUTES.has(pathname)) {
+  if (Array(...PROTECTED_ROUTES).some(r => pathname.startsWith(r))) {
     const supabase = createMiddlewareClient({ req, res })
 
     const { data } = await supabase.auth.getSession()

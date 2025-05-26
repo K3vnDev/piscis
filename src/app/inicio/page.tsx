@@ -6,6 +6,7 @@ import { AppSidebar } from '@/components/appSidebar/appSidebar'
 import { WelcomeCard } from '@/components/welcomeCard'
 import { AppHeader } from '@/components/appHeader'
 import { useUserData } from '@/hooks/useUserData'
+import { NewsCard } from '@/components/newsCard'
 
 export default function InicioPage() {
   const userData = useUserData()
@@ -15,16 +16,18 @@ export default function InicioPage() {
       <AppSidebar {...{ userData }} />
       <AppHeader />
 
-      <main className='ml-(--sidebar-w) pt-[calc(var(--body-pt)+var(--header-h))] w-full min-h-screen flex flex-col'>
+      <main className='ml-(--sidebar-w) pt-[calc(2rem+var(--body-pt)+var(--header-h))] w-full min-h-screen flex flex-col items-center gap-14 pb-16'>
         <WelcomeCard />
 
-        <div className='w-full px-32 mt-9'>
+        <div className='w-full px-32'>
           <div className='flex gap-8'>
             {cards.map((card, i) => (
               <InfoCard className='w-full' {...card} key={i} />
             ))}
           </div>
         </div>
+
+        <NewsCard />
       </main>
     </body>
   )

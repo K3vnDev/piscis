@@ -20,7 +20,7 @@ export const CONTENT_JSON = {
   'Content-Type': 'application/json'
 } as const
 
-export const PROTECTED_ROUTES = new Set(['/inicio', '/semilleros', '/semilleros/crear'])
+export const PROTECTED_ROUTES = new Set(['/inicio', '/semilleros'])
 
 export const KNOWLEDGE_FIELDS = [
   'Ciencias Naturales',

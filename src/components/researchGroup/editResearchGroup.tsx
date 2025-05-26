@@ -7,7 +7,7 @@ import { ACADEMIC_PROGRAMS, CONTENT_JSON, KNOWLEDGE_FIELDS } from '@/consts'
 import { dataFetch } from '@/lib/utils/dataFetch'
 import type { ResearchGroupType } from '@/lib/schemas/researchGroup'
 import { useState } from 'react'
-import { LoadingIcon } from '../icons'
+import { InfoIcon, LoadingIcon } from '../icons'
 
 export const CreateResearchGroup = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -43,9 +43,12 @@ export const CreateResearchGroup = () => {
   }
 
   return (
-    <Section className='py-8 px-14 flex flex-col gap-6'>
+    <Section className='py-8 px-14 flex flex-col gap-6 relative'>
       <div className='flex flex-col gap-2'>
-        <span>Información del semillero</span>
+        <div className='flex items-center gap-2'>
+          <InfoIcon />
+          <span>Información del semillero</span>
+        </div>
         <line className='w-full h-0.5 rounded-full bg-zinc-200' />
       </div>
 
@@ -71,7 +74,7 @@ export const CreateResearchGroup = () => {
           disabled={isLoading}
         >
           {isLoading && <LoadingIcon className='animate-spin' />}
-          Guardar
+          Crear semillero
         </button>
       </form>
     </Section>
