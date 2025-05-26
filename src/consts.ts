@@ -33,7 +33,7 @@ export const KNOWLEDGE_FIELDS = [
   'Ciencias Agrarias',
   'Matemáticas y Computación',
   'Artes'
-]
+] as const
 
 export const ACADEMIC_PROGRAMS = [
   'Ingenierías',
@@ -46,4 +46,4 @@ export const ACADEMIC_PROGRAMS = [
   'Comunicación Social',
   'Idiomas',
   'Licenciaturas'
-]
+] as const

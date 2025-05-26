@@ -3,7 +3,9 @@ import { Section } from '../section'
 import { useRouter } from 'next/navigation'
 import { InputArea } from './input/inputArea'
 import { InputSelect } from './input/inputSelect'
-import { ACADEMIC_PROGRAMS, KNOWLEDGE_FIELDS } from '@/consts'
+import { ACADEMIC_PROGRAMS, CONTENT_JSON, KNOWLEDGE_FIELDS } from '@/consts'
+import { dataFetch } from '@/lib/utils/dataFetch'
+import type { ResearchGroupType } from '@/lib/schemas/researchGroup'
 
 export const CreateResearchGroup = () => {
   const router = useRouter()
@@ -18,10 +20,20 @@ export const CreateResearchGroup = () => {
       program: formData.get('prog'),
       sector: formData.get('sect'),
       line: formData.get('line'),
-      fields: formData.get('fields')
+      field: formData.get('field')
     }
 
-    // TODO: Send to database
+    dataFetch<ResearchGroupType>({
+      url: '/api/research-group',
+      options: {
+        method: 'POST',
+        headers: CONTENT_JSON,
+        body: JSON.stringify(data)
+      },
+      onSuccess: data => {
+        console.log('succes!', { data })
+      }
+    })
   }
 
   return (
@@ -34,7 +46,7 @@ export const CreateResearchGroup = () => {
       <form className='flex flex-col gap-4.5 items-center' onSubmit={handleSubmit}>
         <div className='flex gap-16 w-full'>
           <InputText name='name' label='Nombre' placeholder='Nombre del semillero' />
-          <InputSelect name='prog' label='Programa Académico' options={ACADEMIC_PROGRAMS} />
+          <InputSelect name='prog' label='Programa Académico' options={[...ACADEMIC_PROGRAMS]} />
         </div>
         <InputArea
           label='Breve descripción'
@@ -44,7 +56,7 @@ export const CreateResearchGroup = () => {
         />
         <InputText name='sect' label='Sectores en lo que aplican' placeholder='Ej. Sector Productivo' />
         <InputText name='line' label='Linea de investigación' placeholder='Especifica tu investigación...' />
-        <InputSelect name='fields' label='Área de conocimiento' options={KNOWLEDGE_FIELDS} />
+        <InputSelect name='field' label='Área de conocimiento' options={[...KNOWLEDGE_FIELDS]} />
         <button className='px-16 py-3 rounded-md bg-blue-40 text-white w-fit mt-5 font-semibold button'>
           Guardar
         </button>
