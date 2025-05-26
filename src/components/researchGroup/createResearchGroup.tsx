@@ -6,8 +6,11 @@ import { InputSelect } from './input/inputSelect'
 import { ACADEMIC_PROGRAMS, CONTENT_JSON, KNOWLEDGE_FIELDS } from '@/consts'
 import { dataFetch } from '@/lib/utils/dataFetch'
 import type { ResearchGroupType } from '@/lib/schemas/researchGroup'
+import { useState } from 'react'
+import { LoadingIcon } from '../icons'
 
 export const CreateResearchGroup = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -23,6 +26,8 @@ export const CreateResearchGroup = () => {
       field: formData.get('field')
     }
 
+    setIsLoading(true)
+
     dataFetch<ResearchGroupType>({
       url: '/api/research-group',
       options: {
@@ -30,9 +35,10 @@ export const CreateResearchGroup = () => {
         headers: CONTENT_JSON,
         body: JSON.stringify(data)
       },
-      onSuccess: data => {
-        console.log('succes!', { data })
-      }
+      onSuccess: () => {
+        router.push('/semilleros')
+      },
+      onFinish: () => setIsLoading(false)
     })
   }
 
@@ -57,7 +63,14 @@ export const CreateResearchGroup = () => {
         <InputText name='sect' label='Sectores en lo que aplican' placeholder='Ej. Sector Productivo' />
         <InputText name='line' label='Linea de investigación' placeholder='Especifica tu investigación...' />
         <InputSelect name='field' label='Área de conocimiento' options={[...KNOWLEDGE_FIELDS]} />
-        <button className='px-16 py-3 rounded-md bg-blue-40 text-white w-fit mt-5 font-semibold button'>
+        <button
+          className={`
+            px-16 py-3 rounded-md bg-blue-40 text-white w-fit mt-5 font-semibold button
+            flex items-center justify-center gap-2
+          `}
+          disabled={isLoading}
+        >
+          {isLoading && <LoadingIcon className='animate-spin' />}
           Guardar
         </button>
       </form>
