@@ -36,7 +36,7 @@ export default function InicioPage() {
 const cards = [
   {
     icon: <ToggleRightIcon />,
-    count: 5,
+    count: 3,
     label: 'Semilleros activos'
   },
   {
@@ -46,7 +46,7 @@ const cards = [
   },
   {
     icon: <EmailIcon />,
-    count: 3,
+    count: 4,
     label: 'Solicitudes pendientes'
   }
 ]

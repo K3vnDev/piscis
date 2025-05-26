@@ -3,7 +3,6 @@
 import { Header } from '@/components/header'
 import { CalendarIcon, LoadingIcon, PlusIcon } from '@/components/icons'
 import { Section } from '@/components/section'
-import type { ResearchGroupType } from '@/lib/schemas/researchGroup'
 import { dataFetch } from '@/lib/utils/dataFetch'
 import { useStore } from '@/store/useStore'
 import type { SavedResearchGroup } from '@/types'
@@ -28,6 +27,8 @@ export default function SemillerosPage() {
     })
   }, [])
 
+  const sortedResearchGroups = researchGroups?.sort((a, b) => a.name.localeCompare(b.name))
+
   return (
     <>
       <Header>Semilleros</Header>
@@ -43,8 +44,8 @@ export default function SemillerosPage() {
           {isLoadingCreate ? <LoadingIcon className='animate-spin' /> : <PlusIcon />}
           Crear nuevo semillero
         </button>
-        {researchGroups ? (
-          researchGroups?.map((group, index) => <ResearchGroupCard key={index} {...group} />)
+        {sortedResearchGroups ? (
+          sortedResearchGroups.map((group, index) => <ResearchGroupCard key={index} {...group} />)
         ) : (
           <LoadingIcon className='animate-spin size-10 text-gray-400' />
         )}

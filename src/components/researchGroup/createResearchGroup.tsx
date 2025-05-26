@@ -53,7 +53,7 @@ export const CreateResearchGroup = () => {
       </div>
 
       <form className='flex flex-col gap-4.5 items-center' onSubmit={handleSubmit}>
-        <div className='flex gap-16 w-full'>
+        <div className='flex gap-12 w-full'>
           <InputText name='name' label='Nombre' placeholder='Nombre del semillero' />
           <InputSelect name='prog' label='Programa Académico' options={[...ACADEMIC_PROGRAMS]} />
         </div>

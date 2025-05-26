@@ -41,6 +41,7 @@ export const AddParticipants = ({ rgId, participants, setParticipants }: Props) 
   }
 
   const filteredStudents = allStudents.filter(s => !participants.some(p => p.id === s.id))
+  const sortedStudents = filteredStudents.sort((a, b) => a.name.localeCompare(b.name))
 
   return (
     <div className='flex flex-col gap-2 p-4 rounded-lg outline outline-gray-400/50 mb-4'>
@@ -56,7 +57,7 @@ export const AddParticipants = ({ rgId, participants, setParticipants }: Props) 
 
       {isAdding && (
         <ul className='overflow-x-hidden overflow-y-scroll h-fit max-h-48'>
-          {filteredStudents.map((student, index) => {
+          {sortedStudents.map((student, index) => {
             const studentRole = student.role === 'teacher' ? 'Docente' : 'Estudiante'
 
             return (

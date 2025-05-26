@@ -39,6 +39,8 @@ export const EditResearchGroup = ({ id }: Props) => {
     })
   }, [])
 
+  const sortedParticipants = participants?.sort((a, b) => a.name.localeCompare(b.name))
+
   return (
     <Section className='py-8 px-14 flex flex-col gap-6 relative'>
       <div className='flex flex-col gap-2'>
@@ -53,7 +55,7 @@ export const EditResearchGroup = ({ id }: Props) => {
 
       <ul className='flex flex-col gap-4.5'>
         {userData && <ParticipantCard owner {...{ participants, setParticipants, ...userData }} />}
-        {participants?.map((participant, index) => (
+        {sortedParticipants?.map((participant, index) => (
           <ParticipantCard key={index} {...{ ...participant, participants, setParticipants }} />
         ))}
       </ul>
