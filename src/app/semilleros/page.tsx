@@ -43,9 +43,11 @@ export default function SemillerosPage() {
           {isLoadingCreate ? <LoadingIcon className='animate-spin' /> : <PlusIcon />}
           Crear nuevo semillero
         </button>
-        {researchGroups?.map((group, index) => (
-          <ResearchGroupCard key={index} {...group} />
-        ))}
+        {researchGroups ? (
+          researchGroups?.map((group, index) => <ResearchGroupCard key={index} {...group} />)
+        ) : (
+          <LoadingIcon className='animate-spin size-10 text-gray-400' />
+        )}
       </Section>
     </>
   )

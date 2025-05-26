@@ -1,82 +1,77 @@
-import { InputText } from './input/inputText'
+import { useUserData } from '@/hooks/useUserData'
+import { TrashIcon, UserIcon } from '../icons'
 import { Section } from '../section'
-import { useRouter } from 'next/navigation'
-import { InputArea } from './input/inputArea'
-import { InputSelect } from './input/inputSelect'
-import { ACADEMIC_PROGRAMS, CONTENT_JSON, KNOWLEDGE_FIELDS } from '@/consts'
-import { dataFetch } from '@/lib/utils/dataFetch'
-import type { ResearchGroupType } from '@/lib/schemas/researchGroup'
-import { useState } from 'react'
-import { InfoIcon, LoadingIcon } from '../icons'
 
-export const CreateResearchGroup = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
+interface Props {
+  id: string
+}
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.target as HTMLFormElement)
-
-    const data = {
-      name: formData.get('name'),
-      desc: formData.get('desc'),
-      program: formData.get('prog'),
-      sector: formData.get('sect'),
-      line: formData.get('line'),
-      field: formData.get('field')
-    }
-
-    setIsLoading(true)
-
-    dataFetch<ResearchGroupType>({
-      url: '/api/research-group',
-      options: {
-        method: 'POST',
-        headers: CONTENT_JSON,
-        body: JSON.stringify(data)
-      },
-      onSuccess: () => {
-        router.push('/semilleros')
-      },
-      onFinish: () => setIsLoading(false)
-    })
-  }
+export const EditResearchGroup = ({ id }: Props) => {
+  const userData = useUserData()
 
   return (
     <Section className='py-8 px-14 flex flex-col gap-6 relative'>
       <div className='flex flex-col gap-2'>
         <div className='flex items-center gap-2'>
-          <InfoIcon />
-          <span>Información del semillero</span>
+          <UserIcon />
+          <span>Integrantes del semillero</span>
         </div>
         <line className='w-full h-0.5 rounded-full bg-zinc-200' />
       </div>
-
-      <form className='flex flex-col gap-4.5 items-center' onSubmit={handleSubmit}>
-        <div className='flex gap-16 w-full'>
-          <InputText name='name' label='Nombre' placeholder='Nombre del semillero' />
-          <InputSelect name='prog' label='Programa Académico' options={[...ACADEMIC_PROGRAMS]} />
-        </div>
-        <InputArea
-          label='Breve descripción'
-          name='desc'
-          placeholder='Ej. Semillero enfocado en el desarrollo de soluciones sostenibles en comunidades rurales'
-          className='mb-5'
-        />
-        <InputText name='sect' label='Sectores en lo que aplican' placeholder='Ej. Sector Productivo' />
-        <InputText name='line' label='Linea de investigación' placeholder='Especifica tu investigación...' />
-        <InputSelect name='field' label='Área de conocimiento' options={[...KNOWLEDGE_FIELDS]} />
-        <button
-          className={`
-            px-16 py-3 rounded-md bg-blue-40 text-white w-fit mt-5 font-semibold button
-            flex items-center justify-center gap-2
-          `}
-          disabled={isLoading}
-        >
-          {isLoading && <LoadingIcon className='animate-spin' />}
-          Crear semillero
-        </button>
-      </form>
+      <ul className='flex flex-col gap-4.5'>
+        {userData && <ParticipantCard name={userData.name} role='teacher' owner />}
+        {participantsMock.map((participant, index) => (
+          <ParticipantCard key={index} {...participant} />
+        ))}
+      </ul>
     </Section>
   )
 }
+
+interface ParticipantCardProps {
+  name: string
+  role: 'teacher' | 'student'
+  owner?: boolean
+}
+
+const ParticipantCard = ({ name, role, owner = false }: ParticipantCardProps) => {
+  const roleText = {
+    teacher: 'Docente',
+    student: 'Estudiante'
+  }
+
+  const handleDelete = () => {}
+
+  return (
+    <li
+      className={`
+        bg-gray-100 py-3.5 px-8 rounded-lg shadow-md
+        flex justify-between w-full items-center
+      `}
+    >
+      <div className='flex flex-col'>
+        <span className='flex gap-2 items-center'>
+          <span className='text-lg font-semibold'>{name}</span>
+          {owner && <span className='text-gray-500 text-sm'>(Organizador)</span>}
+        </span>
+        <p className='text-gray-600'>{roleText[role]}</p>
+      </div>
+      {!owner && (
+        <button
+          className='button bg-gray-200 shadow-card rounded-full size-13 flex items-center justify-center'
+          onClick={handleDelete}
+        >
+          <TrashIcon className='text-gray-500 size-7' />
+        </button>
+      )}
+    </li>
+  )
+}
+
+const participantsMock = [
+  { name: 'Ana Martínez', role: 'student' as const },
+  { name: 'Carlos Gómez', role: 'student' as const },
+  { name: 'Lucía Torres', role: 'student' as const },
+  { name: 'Miguel Rojas', role: 'student' as const },
+  { name: 'Sofía Ramírez', role: 'student' as const }
+]

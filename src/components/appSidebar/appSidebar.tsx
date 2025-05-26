@@ -19,7 +19,7 @@ export const AppSidebar = ({ userData }: Props) => {
     <aside
       className={`
         bg-zinc-900 fixed h-screen w-(--sidebar-w) flex flex-col py-8
-        items-center space justify-between z-10
+        items-center space justify-between z-20
       `}
     >
       <div className='flex flex-col items-center gap-14'>

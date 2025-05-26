@@ -2,7 +2,7 @@ import { SpeakerIcon } from './icons'
 
 export const NewsCard = () => {
   return (
-    <article className='bg-gradient-to-r from-blue-30 to-blue-40 rounded-xl py-5 px-7 flex flex-col gap-2 mt-8'>
+    <article className='bg-gradient-to-r from-blue-30 to-blue-40 rounded-xl py-5 px-7 flex flex-col gap-2 mt-8 shadow-card'>
       <header className='flex justify-between items-center text-white px-2'>
         <span className='font-semibold text-2xl'>Novedades</span>
         <SpeakerIcon />
