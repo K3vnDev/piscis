@@ -21,3 +21,29 @@ export const CONTENT_JSON = {
 } as const
 
 export const PROTECTED_ROUTES = new Set(['/inicio', '/semilleros', '/semilleros/crear'])
+
+export const KNOWLEDGE_FIELDS = [
+  'Ciencias Naturales',
+  'Ingeniería y Tecnología',
+  'Ciencias de la Salud',
+  'Ciencias Sociales',
+  'Ciencias Económicas y Administrativas',
+  'Educación',
+  'Humanidades',
+  'Ciencias Agrarias',
+  'Matemáticas y Computación',
+  'Artes'
+]
+
+export const ACADEMIC_PROGRAMS = [
+  'Ingenierías',
+  'Administración de Empresas',
+  'Psicología',
+  'Medicina',
+  'Contaduría Pública',
+  'Derecho',
+  'Enfermería',
+  'Comunicación Social',
+  'Idiomas',
+  'Licenciaturas'
+]

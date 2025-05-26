@@ -16,7 +16,12 @@ export const AppSidebar = ({ userData }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    <aside className='bg-zinc-900 fixed h-screen w-24 flex flex-col py-8 items-center space justify-between'>
+    <aside
+      className={`
+        bg-zinc-900 fixed h-screen w-(--sidebar-w) flex flex-col py-8
+        items-center space justify-between z-10
+      `}
+    >
       <div className='flex flex-col items-center gap-14'>
         <LogoIcon className='brightness-0 invert w-16' />
         <UserImage userData={userData} />

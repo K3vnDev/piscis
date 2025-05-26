@@ -21,6 +21,13 @@
   --shadow-card: 2px 4px 6px rgba(0, 0, 0, 0.25);
 }
 
+:root {
+  /*Sizes*/
+  --sidebar-w: 6rem;
+  --header-h: 5rem;
+  --body-pt: 5.5rem;
+}
+
 .button {
   @apply transition duration-200 ease-in-out hover:brightness-125 cursor-pointer active:scale-95 active:brightness-90 disabled:cursor-default disabled:brightness-75 disabled:scale-100;
 }

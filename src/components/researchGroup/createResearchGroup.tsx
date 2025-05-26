@@ -1,42 +1,54 @@
 import { InputText } from './input/inputText'
 import { Section } from '../section'
 import { useRouter } from 'next/navigation'
+import { InputArea } from './input/inputArea'
+import { InputSelect } from './input/inputSelect'
+import { ACADEMIC_PROGRAMS, KNOWLEDGE_FIELDS } from '@/consts'
 
 export const CreateResearchGroup = () => {
   const router = useRouter()
 
-  const handleClick = () => {
-    router.replace('/semilleros')
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.target as HTMLFormElement)
+
+    const data = {
+      name: formData.get('name'),
+      desc: formData.get('desc'),
+      program: formData.get('prog'),
+      sector: formData.get('sect'),
+      line: formData.get('line'),
+      fields: formData.get('fields')
+    }
+
+    // TODO: Send to database
   }
 
   return (
-    <Section className='pt-8 pb-12 px-14 flex flex-col gap-6'>
+    <Section className='py-8 px-14 flex flex-col gap-6'>
       <div className='flex flex-col gap-2'>
         <span>Información del semillero</span>
         <line className='w-full h-0.5 rounded-full bg-zinc-200' />
       </div>
 
-      <div className='flex flex-col gap-4.5 items-center'>
+      <form className='flex flex-col gap-4.5 items-center' onSubmit={handleSubmit}>
         <div className='flex gap-16 w-full'>
-          <InputText label='Nombre' placeholder='Nombre del semillero' />
-          <InputText label='Programa Académico' placeholder='Seleccione' />
+          <InputText name='name' label='Nombre' placeholder='Nombre del semillero' />
+          <InputSelect name='prog' label='Programa Académico' options={ACADEMIC_PROGRAMS} />
         </div>
-        <InputText
+        <InputArea
           label='Breve descripción'
+          name='desc'
           placeholder='Ej. Semillero enfocado en el desarrollo de soluciones sostenibles en comunidades rurales'
+          className='mb-5'
         />
-        <InputText label='Sectores en lo que aplican' placeholder='Sector Productivo' />
-        <InputText label='Linea de investigacion' placeholder='Especifica tu investigacion' />
-        <InputText label='Área de conocimiento' placeholder='Seleccione' />
-        <InputText label='Fecha de creación' placeholder='DD/MM/AAAA' />
-        <InputText label='Correo electrónico' placeholder='ejemplo@gmail.com' />
-        <button
-          className='px-12 py-3 rounded-md bg-blue-50 text-white w-fit mt-4 font-semibold button'
-          onClick={handleClick}
-        >
-          GUARDAR
+        <InputText name='sect' label='Sectores en lo que aplican' placeholder='Ej. Sector Productivo' />
+        <InputText name='line' label='Linea de investigación' placeholder='Especifica tu investigación...' />
+        <InputSelect name='fields' label='Área de conocimiento' options={KNOWLEDGE_FIELDS} />
+        <button className='px-16 py-3 rounded-md bg-blue-40 text-white w-fit mt-5 font-semibold button'>
+          Guardar
         </button>
-      </div>
+      </form>
     </Section>
   )
 }

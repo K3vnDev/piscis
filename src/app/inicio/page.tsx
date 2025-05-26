@@ -13,9 +13,9 @@ export default function InicioPage() {
   return (
     <body className='flex bg-[#efefef]'>
       <AppSidebar {...{ userData }} />
+      <AppHeader />
 
-      <main className='ml-24 w-full min-h-screen flex flex-col'>
-        <AppHeader />
+      <main className='ml-(--sidebar-w) pt-[calc(var(--body-pt)+var(--header-h))] w-full min-h-screen flex flex-col'>
         <WelcomeCard />
 
         <div className='w-full px-32 mt-9'>
