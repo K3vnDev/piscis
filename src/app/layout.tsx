@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head>
-        <title>Piscis</title>
+        <title>Piscis - Gestiona semilleros</title>
       </head>
       {children}
     </html>
